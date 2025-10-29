@@ -11,7 +11,7 @@ const Contact = sequelise.define(
             primaryKey: true,
         },
 
-        user_id: {
+        userId: {
             type: DataTypes.INTEGER,
 
             references: {
@@ -40,7 +40,7 @@ const Contact = sequelise.define(
 
         indexes: [
             {
-                fields: ["user_id", "name", "tag"],
+                fields: ["userId", "name", "tag"],
             },
         ],
     }
