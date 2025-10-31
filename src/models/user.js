@@ -11,6 +11,11 @@ const User = sequelise.define(
             primaryKey: true,
         },
 
+        username: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+
         email: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -40,24 +45,21 @@ const User = sequelise.define(
                     user.email = user.email.toLowerCase();
                 }
 
-                if (user.password) {
+                if (user.changed("password")) {
                     const salt = await bcrypt.genSalt();
                     user.password = await bcrypt.hash(user.password, salt);
                 }
-            }
+            },
         },
 
         indexes: [
             {
                 unique: true,
-                fields: "id"
+                fields: ["email"],
             },
+            
             {
-                unique: true,
-                fields: "email",
-            },
-            {
-                fields: "createdAt",
+                fields: ["createdAt"],
             }
         ],
     }
