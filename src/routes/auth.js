@@ -18,4 +18,11 @@ router.post("/login",
     authCtrl.login,
 )
 
+router.post(
+    "/refresh",
+    authCtrl.refresh,
+)
+
+router.post("/logout", authCtrl.logout);
+
 export default router;

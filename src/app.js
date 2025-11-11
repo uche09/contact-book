@@ -2,17 +2,20 @@ import express from "express";
 import config from "./config/index.js";
 import sequelize, {connectDB} from "./config/db.js";
 import errorHandler from "./middlewares/error_handler.js";
-import authRoutes from "./routes/auth.js";
+import routes from "./routes/index.js";
+import cookieParser from "cookie-parser";
 
 const app = express();
 
 // middlewares
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 
 // routes
-app.use("/api", authRoutes);
+app.use("/api/auth/", routes.authRoutes);
+app.use("/api", routes.contactRoutes);
 
 
 // route defaults

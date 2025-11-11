@@ -11,7 +11,7 @@ export function requireAuth(req, res, next) {
     const payload = verifyAccessToken(token);
     
     // attach minimal user info. Do not trust anything else client sends.
-    req.user = { id: payload.userId, email: payload.email };
+    req.user = { id: payload.userId, username: payload.username, email: payload.email };
     next();
   } catch (err) {
     // differentiate expired vs invalid
