@@ -14,4 +14,12 @@ router.post(
     contactController.addContact
 );
 
+router.get(
+    "/contacts",
+    requireAuth,
+    validation.queryContactsValidator,
+    getValidationErr,
+    contactController.getContacts
+);
+
 export default router;

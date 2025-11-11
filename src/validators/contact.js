@@ -28,8 +28,24 @@ const addContactValidator = [
     body("tag")
         .optional({ nullable: true })
         .trim()
+        .toLowerCase()
         .isLength({ max: 50 }).withMessage("Tag can be at most 50 characters long"),
 ];
 
+const queryContactsValidator = [
+    query("tag")
+        .optional()
+        .trim()
+        .isLength({ max: 50 }).withMessage("Tag can be at most 50 characters long"),
 
-export default { addContactValidator };
+    query("sortBy")
+        .optional()
+        .trim()
+        .isIn(["name", "date"]).withMessage("sortBy must be either 'name' or 'date'"),
+        
+    query("ord")
+        .optional()
+        .trim()
+        .isIn(["asc", "desc"]).withMessage("ord must be either 'asc' or 'desc'"),
+];
+export default { addContactValidator, queryContactsValidator };
