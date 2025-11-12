@@ -1,0 +1,816 @@
+{
+	"info": {
+		"_postman_id": "0f7a30ce-a92a-4a05-af0d-4c4ad3616503",
+		"name": "Contact Book",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "48923781",
+		"_collection_link": "https://uche09-6754057.postman.co/workspace/uche09's-Workspace~b3a89bc7-35e1-43ec-884b-f92280b950f5/collection/48923781-0f7a30ce-a92a-4a05-af0d-4c4ad3616503?action=share&source=collection_link&creator=48923781"
+	},
+	"item": [
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Registration",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"username\": \"Test\",\n  \"email\": \"test@mail.com\",\n  \"password\": \"passwoRd@123\",\n  \"confirmPassword\": \"passwoRd@123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/auth/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Invalid Registration",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\n{\n  \"username\": \"\",\n  \"email\": \"testmail.com\",\n  \"password\": \"abcdef\",\n  \"confirmPassword\": \"abcdf\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "292"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"124-CiFvddchnNx/ZsxgDvh+7uaA6TA\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 31 Oct 2025 04:26:30 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": false,\n    \"message\": \"Validation errors\",\n    \"data\": [\n        \"Username is required\",\n        \"Invalid email\",\n        \"Password must have at least 6 characters, must have uppercase letter, must have lowercase letter, must have a digit, must have special characters.\",\n        \"Password comfirmation does not match password\"\n    ]\n}"
+				},
+				{
+					"name": "Valid Registration",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"Test\",\n  \"email\": \"test@mail.com\",\n  \"password\": \"passwoRd@123\",\n  \"confirmPassword\": \"passwoRd@123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "44"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2c-1nQfrloYUSpVJLl12RtvcGSoubQ\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 31 Oct 2025 08:59:19 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"message\": \"User registered\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"test@mail.com\",\n    \"password\": \"passwoRd@123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Invalid Login",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"test@mail.com\",\n    \"password\": \"passwod@123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "47"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2f-fzy16ZwdCVXD/4e+iuzv+10jbVg\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 31 Oct 2025 09:23:24 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": false,\n    \"error\": \"Invalid credentials\"\n}"
+				},
+				{
+					"name": "Valid Login",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"test@mail.com\",\n    \"password\": \"passwoRd@123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiVGVzdCIsImVtYWlsIjoidGVzdEBtYWlsLmNvbSIsImlhdCI6MTc2MTkwNzYwMiwiZXhwIjoxNzY0NDk5NjAyfQ.YfmmmAanrEFpXftzIWO7zjxJ0RICXWJba1NaykP9Lmc; Max-Age=2592000; Path=/; Expires=Sun, 30 Nov 2025 10:46:42 GMT; HttpOnly; SameSite=Strict"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "266"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"10a-/WYkfd1tPyWHkmp4KPaeDfY6H8Q\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 31 Oct 2025 10:46:42 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"user\": {\n        \"id\": 1,\n        \"email\": \"test@mail.com\",\n        \"username\": \"Test\"\n    },\n    \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoidGVzdEBtYWlsLmNvbSIsImlhdCI6MTc2MTkwNzYwMiwiZXhwIjoxNzYxOTA4NTAyfQ.y3DjXhaQk8511hahy3C1kuvtIhJ69-xwZCfKVG4qTjs\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Add Contact",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiVGVzdCIsImVtYWlsIjoidGVzdEBtYWlsLmNvbSIsImlhdCI6MTc2Mjg2NDUwNywiZXhwIjoxNzYyODY1NDA3fQ.Cj9t4mv1-EP01PCJ5jxphJGG38wPAjzcoU0-LcNWeVE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"John Doe\",\n    \"phone\": \"08123456789\",\n    \"email\": \"Example@test.com\", // Optional\n    \"physicalAddr\": \"New York\",  // Optional\n    \"tag\": \"neigbour\" // Optional\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/add-contact",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"add-contact"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"John Doe\",\n    \"phone\": \"08123456789\",\n    \"email\": \"Example@test.com\", // Optional\n    \"physicalAddr\": \"New York\",  // Optional\n    \"tag\": \"neigbour\" // Optional\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/add-contact",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"add-contact"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "57"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"39-CXjw3ic3do8DOJlFTexsWAlcyVM\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 11 Nov 2025 12:38:23 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"message\": \"Contact created successfully\"\n}"
+				},
+				{
+					"name": "Invalid",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"\",\n    \"phone\": \"0812345678w\",\n    \"email\": \"Exampletest.com\", // Optional\n    \"physicalAddr\": \"New York\",  // Optional\n    \"tag\": \"neigbour\" // Optional\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/add-contact",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"add-contact"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "122"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"7a-1YEteEHIW7OXE+ymJy8KXPNasBQ\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 11 Nov 2025 12:47:13 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": false,\n    \"message\": \"Validation errors\",\n    \"data\": [\n        \"Name is required\",\n        \"Invalid phone number\",\n        \"Invalid email address\"\n    ]\n}"
+				},
+				{
+					"name": "Already Exist",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"John Doe\",\n    \"phone\": \"08123456789\",\n    \"email\": \"Example@test.com\", // Optional\n    \"physicalAddr\": \"New York\",  // Optional\n    \"tag\": \"neigbour\" // Optional\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/add-contact",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"add-contact"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "51"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"33-U0L+AHZ3kM3/GY+usiXnaxaHykU\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 11 Nov 2025 13:56:14 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": false,\n    \"message\": \"Contact already exist\"\n}"
+				},
+				{
+					"name": "Duplicate With Country Code",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"John Doe\",\n    \"phone\": \"+2348123456789\",\n    \"email\": \"Example@test.com\", // Optional\n    \"physicalAddr\": \"New York\",  // Optional\n    \"tag\": \"neigbour\" // Optional\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/add-contact",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"add-contact"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "51"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"33-U0L+AHZ3kM3/GY+usiXnaxaHykU\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 11 Nov 2025 14:57:10 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": false,\n    \"message\": \"Contact already exist\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Contacts",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiVGVzdCIsImVtYWlsIjoidGVzdEBtYWlsLmNvbSIsImlhdCI6MTc2Mjg3NjQ3MSwiZXhwIjoxNzYyODc3MzcxfQ.t7W1WdT1gWylamev5dT5rIV8QvjPn7kxh4z483MsizA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/contacts?tag=techcrush&sortBy=date&ord=desc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"contacts"
+					],
+					"query": [
+						{
+							"key": "tag",
+							"value": "techcrush"
+						},
+						{
+							"key": "sortBy",
+							"value": "date"
+						},
+						{
+							"key": "ord",
+							"value": "desc"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "All contacts Alphabetical",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/contacts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"contacts"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1261"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"4ed-gqstLDkB0OwUAsWSmskmZdXW2XA\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 11 Nov 2025 15:28:58 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"id\": 7,\n            \"userId\": 1,\n            \"name\": \"deborah\",\n            \"phone\": \"07123456789\",\n            \"email\": \"Example@test.com\",\n            \"physicalAddr\": \"New York\",\n            \"tag\": \"techcrush\",\n            \"createdAt\": \"2025-11-11T15:20:50.000Z\",\n            \"updatedAt\": \"2025-11-11T15:20:50.000Z\"\n        },\n        {\n            \"id\": 11,\n            \"userId\": 1,\n            \"name\": \"emmanuel\",\n            \"phone\": \"08023456789\",\n            \"email\": \"Example@test.com\",\n            \"physicalAddr\": \"New York\",\n            \"tag\": \"school\",\n            \"createdAt\": \"2025-11-11T15:24:11.000Z\",\n            \"updatedAt\": \"2025-11-11T15:24:11.000Z\"\n        },\n        {\n            \"id\": 8,\n            \"userId\": 1,\n            \"name\": \"james\",\n            \"phone\": \"09123456789\",\n            \"email\": \"Example@test.com\",\n            \"physicalAddr\": \"New York\",\n            \"tag\": \"work\",\n            \"createdAt\": \"2025-11-11T15:21:17.000Z\",\n            \"updatedAt\": \"2025-11-11T15:21:17.000Z\"\n        },\n        {\n            \"id\": 9,\n            \"userId\": 1,\n            \"name\": \"mom\",\n            \"phone\": \"+2349023456789\",\n            \"email\": \"Example@test.com\",\n            \"physicalAddr\": \"New York\",\n            \"tag\": \"family\",\n            \"createdAt\": \"2025-11-11T15:22:29.000Z\",\n            \"updatedAt\": \"2025-11-11T15:22:29.000Z\"\n        },\n        {\n            \"id\": 6,\n            \"userId\": 1,\n            \"name\": \"mr. tobi\",\n            \"phone\": \"07123456789\",\n            \"email\": \"Example@test.com\",\n            \"physicalAddr\": \"New York\",\n            \"tag\": \"techcrush\",\n            \"createdAt\": \"2025-11-11T15:20:28.000Z\",\n            \"updatedAt\": \"2025-11-11T15:20:28.000Z\"\n        },\n        {\n            \"id\": 10,\n            \"userId\": 1,\n            \"name\": \"norah\",\n            \"phone\": \"+2348023456789\",\n            \"email\": \"Example@test.com\",\n            \"physicalAddr\": \"New York\",\n            \"tag\": \"school\",\n            \"createdAt\": \"2025-11-11T15:23:46.000Z\",\n            \"updatedAt\": \"2025-11-11T15:23:46.000Z\"\n        }\n    ]\n}"
+				},
+				{
+					"name": "Filter And Sort",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/contacts?tag=techcrush&sortBy=date&ord=desc",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"contacts"
+							],
+							"query": [
+								{
+									"key": "tag",
+									"value": "techcrush"
+								},
+								{
+									"key": "sortBy",
+									"value": "date"
+								},
+								{
+									"key": "ord",
+									"value": "desc"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "442"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1ba-r2FNboiL/69fUsg7W0wuVaY8gLM\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 11 Nov 2025 16:01:34 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"id\": 7,\n            \"userId\": 1,\n            \"name\": \"deborah\",\n            \"phone\": \"07123456789\",\n            \"email\": \"Example@test.com\",\n            \"physicalAddr\": \"New York\",\n            \"tag\": \"techcrush\",\n            \"createdAt\": \"2025-11-11T15:20:50.000Z\",\n            \"updatedAt\": \"2025-11-11T15:20:50.000Z\"\n        },\n        {\n            \"id\": 6,\n            \"userId\": 1,\n            \"name\": \"mr. tobi\",\n            \"phone\": \"07123456789\",\n            \"email\": \"Example@test.com\",\n            \"physicalAddr\": \"New York\",\n            \"tag\": \"techcrush\",\n            \"createdAt\": \"2025-11-11T15:20:28.000Z\",\n            \"updatedAt\": \"2025-11-11T15:20:28.000Z\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Refresh Token",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
