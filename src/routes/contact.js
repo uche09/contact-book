@@ -22,4 +22,34 @@ router.get(
     contactController.getContacts
 );
 
+router.get(
+    "/search", 
+    requireAuth,
+    validation.searchValidator,
+    getValidationErr,
+    contactController.searchContact
+);
+
+router.get(
+    "/download",
+    requireAuth,
+    contactController.downloadContacts
+);
+
+router.put(
+    "/:id", 
+    requireAuth,
+    validation.updateContactValidator,
+    getValidationErr,
+    contactController.updateContact
+);
+router.delete(
+    "/:id", 
+    requireAuth, 
+    validation.deleteContactValidator,
+    getValidationErr,
+    contactController.deleteContact
+);
+
+
 export default router;
