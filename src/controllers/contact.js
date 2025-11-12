@@ -71,9 +71,8 @@ async function getContacts(req, res) {
 const searchContact = async(req, res) => {
     try {
         const userId = req.user.id;
-        const { name, phone, id } = req.query; // optional query params
+        let { name, phone, id } = req.query; // optional query params
 
-        // Build dynamic WHERE conditions
         const where = { userId };
 
         if (id) {
@@ -85,6 +84,14 @@ const searchContact = async(req, res) => {
                 [Op.like]: `%${name}%`
             };
         } else if (phone) {
+
+            // normalize phone number for search to include both with and without country code
+            if (!phone.startsWith("+")) {
+                phone = phone.slice(1);
+            } else if (phone.startsWith("+")) {
+                phone = phone.slice(4); // +234xxx to xxx
+            }
+
             where.phone = {
                 [Op.like]: `%${phone}%`
             };
