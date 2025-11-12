@@ -1,5 +1,6 @@
 import Contact from "../models/contact.js";
 import fs from "fs";
+import { Op } from "sequelize";
 
 
 // 🗑️ Delete a contact by ID
@@ -24,29 +25,49 @@ export const deleteContact = async(req, res) => {
 };
 
 
-// 🔍 Search contact by name
+
 export const searchContact = async(req, res) => {
     try {
         const userId = req.user.id;
-        const { name } = req.query;
+        const { name, phone, id } = req.query; // optional query params
 
+        // Build dynamic WHERE conditions
+        const where = { userId };
+
+        if (id) {
+            where.id = id;
+        }
+
+        if (name) {
+            where.name = {
+                [Op.like]: `%${name}%`
+            };
+        }
+
+        if (phone) {
+            where.phone = {
+                [Op.like]: `%${phone}%`
+            };
+        }
+
+        // Run search
         const contacts = await Contact.findAll({
-            where: {
-                userId,
-                name: {
-                    [Contact.sequelize.Op.like]: `%${name}%`
-                },
-            },
+            where,
             order: [
                 ["name", "ASC"]
             ],
         });
+
+        if (!contacts.length) {
+            return res.status(404).json({ message: "No contacts found." });
+        }
 
         res.status(200).json(contacts);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
 };
+
 
 // ✏️ Update existing contact
 export const updateContact = async(req, res) => {
@@ -64,24 +85,6 @@ export const updateContact = async(req, res) => {
         await saveContactsToFile(userId);
 
         res.status(200).json(contact);
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
-};
-
-// 🗑️ Delete a contact by name
-export const deleteContact = async(req, res) => {
-    try {
-        const userId = req.user.id;
-        const { name } = req.params;
-
-        const deleted = await Contact.destroy({ where: { userId, name } });
-        if (!deleted) {
-            return res.status(404).json({ message: "Contact not found." });
-        }
-
-        await saveContactsToFile(userId);
-        res.status(200).json({ message: "Contact deleted successfully." });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
