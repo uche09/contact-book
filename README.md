@@ -106,8 +106,8 @@ Input rules live under `src/validators` and are applied via route middleware. If
     - Success: `201` 
     ```json 
     { 
-        success: true, 
-        message: "User registered"
+        "success": true, 
+        "message": "User registered"
     }
     ```
     - Errors: `400` validation errors
@@ -125,9 +125,9 @@ Input rules live under `src/validators` and are applied via route middleware. If
     - Success: `200` returns 
     ```json
     { 
-        success: true, 
-        user: {...}, 
-        accessToken: "<jwt>" 
+        "success": true, 
+        "user": {...}, 
+        "accessToken": "<jwt>" 
     } 
     ```
     and sets refreshToken cookie
@@ -160,8 +160,8 @@ Input rules live under `src/validators` and are applied via route middleware. If
     - Success: `201` 
     ```json
     { 
-        success: true, 
-        message: "Contact created successfully" 
+        "success": true, 
+        "message": "Contact created successfully" 
     }
     ```
     - Validation errors: `400` with details
@@ -173,8 +173,8 @@ Input rules live under `src/validators` and are applied via route middleware. If
     - Success: `200` 
     ```json
     { 
-        success: true, 
-        data: [...] 
+        "success": true, 
+        "data": [...] 
     }
     ```
 - GET `/api/search`
@@ -183,8 +183,8 @@ Input rules live under `src/validators` and are applied via route middleware. If
     - Success: `200` 
     ```json
     { 
-        success: true, 
-        data: [...] 
+        "success": true, 
+        "data": [...] 
     }
     ```
      or `404` if none found.
@@ -201,18 +201,18 @@ Input rules live under `src/validators` and are applied via route middleware. If
     - Body: **any updatable fields** 
     ```json
     {
-        name: "Doe John", 
-        phone: "+2348123456789", 
-        email: "NewExample@test.com", 
-        physicalAddr: "Lagos, Nigeria",
-        tag: "friend"
+        "name": "Doe John", 
+        "phone": "+2348123456789", 
+        "email": "NewExample@test.com", 
+        "physicalAddr": "Lagos, Nigeria",
+        "tag": "friend"
     }
     ```
     - Success: `200` 
     ```json
     { 
-        success: true, 
-        message: "Contact updated" 
+        "success": true, 
+        "message": "Contact updated" 
     }
     ``` 
     (or similar)
@@ -224,8 +224,8 @@ Input rules live under `src/validators` and are applied via route middleware. If
     - Success: `200` 
     ```json
     { 
-        success: true, 
-        message: "Contact deleted" 
+        "success": true, 
+        "message": "Contact deleted" 
     }
     ```
     (or similar)
